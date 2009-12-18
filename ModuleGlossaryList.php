@@ -63,7 +63,7 @@ class ModuleGlossaryList extends Module
 			return $objTemplate->parse();
 		}
 
-		$this->glossaries = deserialize($this->glossaries, true);
+		$this->glossaries = deserialize($this->glossaries);
 
 		// Return if there are no glossaries
 		if (!is_array($this->glossaries) || count($this->glossaries) < 1)
