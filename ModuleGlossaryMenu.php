@@ -80,7 +80,7 @@ class ModuleGlossaryMenu extends Module
 	 */
 	protected function compile()
 	{
-		$objTerm = $this->Database->execute("SELECT * FROM tl_glossary_term WHERE pid IN(" . implode(',', $this->glossaries) . ")" . " ORDER BY term");
+		$objTerm = $this->Database->execute("SELECT * FROM tl_glossary_term WHERE pid IN(" . implode(',', array_map('intval', $this->glossaries)) . ")" . " ORDER BY term");
 
 		if ($objTerm->numRows < 1)
 		{
