@@ -52,7 +52,7 @@ $GLOBALS['TL_LANG']['tl_glossary']['deleteConfirm'] = 'Deleting a glossary will 
 $GLOBALS['TL_LANG']['tl_glossary']['new']    = array('New glossary', 'Create a new glossary');
 $GLOBALS['TL_LANG']['tl_glossary']['show']   = array('Glossary details', 'Show the details of glossary ID %s');
 $GLOBALS['TL_LANG']['tl_glossary']['edit']   = array('Edit glossary', 'Edit glossary ID %s');
-$GLOBALS['TL_LANG']['tl_glossary']['copy']   = array('Copy glossary', 'Copy glossary ID %s');
+$GLOBALS['TL_LANG']['tl_glossary']['copy']   = array('Duplicate glossary', 'Duplicate glossary ID %s');
 $GLOBALS['TL_LANG']['tl_glossary']['delete'] = array('Delete glossary', 'Delete glossary ID %s');
 
 ?>
