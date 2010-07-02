@@ -37,7 +37,7 @@ $GLOBALS['TL_LANG']['MOD']['glossary'] = array('Glossar', 'Begriffe und deren De
  * Front end modules
  */
 $GLOBALS['TL_LANG']['FMD']['glossary']     = 'Glossar';
-$GLOBALS['TL_LANG']['FMD']['glossaryMenu'] = array('Glossarmenü', 'fügt der Webseite ein Glossarmenü hinzu.');
-$GLOBALS['TL_LANG']['FMD']['glossaryList'] = array('Glossarliste', 'fügt der Webseite eine Glossarliste hinzu.');
+$GLOBALS['TL_LANG']['FMD']['glossaryMenu'] = array('Glossarmenü', 'Fügt der Webseite ein Glossarmenü hinzu.');
+$GLOBALS['TL_LANG']['FMD']['glossaryList'] = array('Glossarliste', 'Fügt der Webseite eine Glossarliste hinzu.');
 
 ?>
