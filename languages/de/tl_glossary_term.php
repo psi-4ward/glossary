@@ -45,7 +45,7 @@ $GLOBALS['TL_LANG']['tl_glossary_term']['enclosure']    = array('Anlagen', 'Bitt
  */
 $GLOBALS['TL_LANG']['tl_glossary_term']['title_legend']      = 'Begriff und Autor';
 $GLOBALS['TL_LANG']['tl_glossary_term']['definition_legend'] = 'Definition';
-$GLOBALS['TL_LANG']['tl_glossary_term']['image_legend']      = 'Artikelbild';
+$GLOBALS['TL_LANG']['tl_glossary_term']['image_legend']      = 'Bild-Einstellungen';
 $GLOBALS['TL_LANG']['tl_glossary_term']['enclosure_legend']  = 'Anlagen';
 
 

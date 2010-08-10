@@ -45,7 +45,7 @@ $GLOBALS['TL_LANG']['tl_glossary_term']['enclosure']    = array('Enclosures', 'P
  */
 $GLOBALS['TL_LANG']['tl_glossary_term']['title_legend']      = 'Term and author';
 $GLOBALS['TL_LANG']['tl_glossary_term']['definition_legend'] = 'Definition';
-$GLOBALS['TL_LANG']['tl_glossary_term']['image_legend']      = 'Article image';
+$GLOBALS['TL_LANG']['tl_glossary_term']['image_legend']      = 'Image settings';
 $GLOBALS['TL_LANG']['tl_glossary_term']['enclosure_legend']  = 'Enclosures';
 
 
