@@ -6,11 +6,10 @@
 <?php endif; ?>
 <?php foreach ($this->terms as $key=>$terms): ?>
 
-<p class="toplink"><a href="<?php echo $this->request; ?>#top"><?php echo $this->topLink; ?></a></p>
 <h2 id="<?php echo $terms[0]->anchor; ?>"><?php echo $key; ?></h2>
 <dl>
 <?php foreach ($terms as $term): ?>
-<dt><?php echo $term->term; ?></dt>
+<dt id="<?php echo $term->id; ?>"><?php echo $term->term; ?></dt>
 <dd>
 <div class="ce_text block">
 <?php if (!$term->addBefore): ?>
@@ -49,6 +48,7 @@
 </dd>
 <?php endforeach; ?>
 </dl>
+<p class="toplink"><a href="<?php echo $this->request; ?>#top"><?php echo $this->topLink; ?></a></p>
 <?php endforeach; ?>
 
 </div>

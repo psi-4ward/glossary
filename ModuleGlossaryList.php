@@ -100,6 +100,7 @@ class ModuleGlossaryList extends Module
 
 			$objTemp->term = $objTerm->term;
 			$objTemp->anchor = 'gl' . utf8_romanize($key);
+			$objTemp->id = standardize($objTerm->term);
 
 			// Clean RTE output
 			$objTemp->definition = str_ireplace
