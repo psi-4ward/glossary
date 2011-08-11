@@ -90,6 +90,7 @@ class ModuleGlossaryList extends Module
 			return;
 		}
 
+		global $objPage;
 		$this->import('String');
 		$arrTerms = array();
 
@@ -102,14 +103,17 @@ class ModuleGlossaryList extends Module
 			$objTemp->anchor = 'gl' . utf8_romanize($key);
 			$objTemp->id = standardize($objTerm->term);
 
-			// Clean RTE output
-			$objTemp->definition = str_ireplace
-			(
-				array('<u>', '</u>', '</p>', '<br /><br />', ' target="_self"'),
-				array('<span style="text-decoration:underline;">', '</span>', "</p>\n", "<br /><br />\n", ''),
-				$this->String->encodeEmail($objTerm->definition)
-			);
+			// Clean the RTE output
+			if ($objPage->outputFormat == 'xhtml')
+			{
+				$objTerm->definition = $this->String->toXhtml($objTerm->definition);
+			}
+			else
+			{
+				$objTerm->definition = $this->String->toHtml5($objTerm->definition);
+			}
 
+			$objTemp->definition = $this->String->encodeEmail($objTerm->definition);
 			$objTemp->addImage = false;
 
 			// Add image
