@@ -1,32 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
-
-/**
- * Contao Open Source CMS
- * Copyright (C) 2005-2011 Leo Feyer
- *
- * Formerly known as TYPOlight Open Source CMS.
- *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- * @copyright  Leo Feyer 2005-2011
- * @author     Leo Feyer <http://www.contao.org>
- * @package    Glossary
- * @license    LGPL
- * @filesource
- */
+<?php
 
 
 /**
@@ -34,6 +6,13 @@
  */
 $GLOBALS['TL_LANG']['tl_glossary']['title']  = array('Title', 'Please enter the glossary title.');
 $GLOBALS['TL_LANG']['tl_glossary']['tstamp'] = array('Revision date', 'Date and time of the latest revision');
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_legend'] = 'Glossarylinks';
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks'] = array('Enable glossary links' , 'Tick this checkbox to enable the glossary links in this glossary.');
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_template'] = array('Template' , 'Please select the template to use for formatting.');
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_pages'] = array('Page selection' , 'Please select the pages on which the glossary links shall appear. You can select as many as you wish.');
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_pagesInvert'] = array('Invert page selection' , 'Do <em>not</em> show term-links on the selected pages but on all others.');
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_disallowintags'] = array('Do not replace word within these tags' , 'Please provide a list of tags, in which no replacing shall be done. i.e.: &quot;&lt;a&gt;,&lt;script&gt;&lt;span class="active first"&gt;&quot;');
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_allowtagsindesc'] = array('Do not remove these tags from the description' , 'By default all tags will be stripped from the description to generate valid HTML. Here you can specify a list of tags that shall not be stripped from the description. i.e.: &quot;&lt;em&gt;,&lt;strong&gt;&quot;&lt;span&gt;&lt;br&gt;&quot;');
 
 
 /**
@@ -54,7 +33,6 @@ $GLOBALS['TL_LANG']['tl_glossary']['deleteConfirm'] = 'Deleting a glossary will 
 $GLOBALS['TL_LANG']['tl_glossary']['new']    = array('New glossary', 'Create a new glossary');
 $GLOBALS['TL_LANG']['tl_glossary']['show']   = array('Glossary details', 'Show the details of glossary ID %s');
 $GLOBALS['TL_LANG']['tl_glossary']['edit']   = array('Edit glossary', 'Edit glossary ID %s');
+$GLOBALS['TL_LANG']['tl_glossary']['editheader']   = array('Edit glossary settings', 'Edit glossary settings ID %s');
 $GLOBALS['TL_LANG']['tl_glossary']['copy']   = array('Duplicate glossary', 'Duplicate glossary ID %s');
 $GLOBALS['TL_LANG']['tl_glossary']['delete'] = array('Delete glossary', 'Delete glossary ID %s');
-
-?>

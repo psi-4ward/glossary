@@ -1,40 +1,17 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
-
-/**
- * Contao Open Source CMS
- * Copyright (C) 2005-2011 Leo Feyer
- *
- * Formerly known as TYPOlight Open Source CMS.
- *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- * @copyright  Leo Feyer 2005-2011
- * @author     Leo Feyer <http://www.contao.org>
- * @package    Glossary
- * @license    LGPL
- * @filesource
- */
-
+<?php
 
 /**
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_glossary']['title']  = array('Titel', 'Bitte geben Sie den Glossartitel ein.');
 $GLOBALS['TL_LANG']['tl_glossary']['tstamp'] = array('Änderungsdatum', 'Datum und Uhrzeit der letzten Änderung');
-
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_legend'] = 'Glossarhervorhebung';
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks'] = array('Glossarhervorhebung aktivieren' , 'Wählen Sie diese Checkbox an, um die Glossarhervorhebung in diesem Glossar zu aktivieren.');
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_template'] = array('Template' , 'Wählen Sie ein Template aus, welches zur Formatierung der Hervorhebung verwendet werden soll.');
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_pages'] = array('Seitenauswahl' , 'Wählen Sie die Seiten, auf welchen Einträge aus diesem Glossar hervorgehoben werden sollen. Sie können beliebig viele Seiten auswählen.');
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_pagesInvert'] = array('Seitenauswahl umkehren' , 'Auf den gewählten Seiten werden Einträge <em>nicht</em> hervorgehoben.');
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_disallowintags'] = array('Innerhalb dieser Tags nicht ersetzen' , 'Geben Sie hier eine Liste von tags an, innerhalb welcher nicht ersetzt werden soll. Bsp: &quot;&lt;a&gt;, &lt;script&gt;&quot;');
+$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_allowtagsindesc'] = array('Diese Tags aus der Beschreibung nicht entfernen' , 'Geben Sie hier eine Liste von tags an, welche nicht aus der Beschreibung entfernt werden sollen. Bsp: &quot;&lt;em&gt;, &lt;strong&gt;&quot;');
 
 /**
  * Legends
@@ -54,7 +31,6 @@ $GLOBALS['TL_LANG']['tl_glossary']['deleteConfirm'] = 'Wenn Sie ein Glossar lös
 $GLOBALS['TL_LANG']['tl_glossary']['new']    = array('Neues Glossar', 'Ein neues Glossar anlegen');
 $GLOBALS['TL_LANG']['tl_glossary']['show']   = array('Glossardetails', 'Details des Glossars ID %s anzeigen');
 $GLOBALS['TL_LANG']['tl_glossary']['edit']   = array('Glossar bearbeiten', 'Glossar ID %s bearbeiten');
+$GLOBALS['TL_LANG']['tl_glossary']['editheader']   = array('Glossar-Einstellungen bearbeiten', 'Glossar-Einstellungen ID %s bearbeiten');
 $GLOBALS['TL_LANG']['tl_glossary']['copy']   = array('Glossar duplizieren', 'Glossar ID %s duplizieren');
 $GLOBALS['TL_LANG']['tl_glossary']['delete'] = array('Glossar löschen', 'Glossar ID %s löschen');
-
-?>

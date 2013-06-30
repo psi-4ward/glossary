@@ -1,0 +1,130 @@
+
+<div class="<?php echo $this->class; ?> glossaryList_modern block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+<div class="glossaryNavigation">
+<ul>
+<?php foreach(array_keys($this->terms) as $char): ?>
+	<li class="glossaryNavigationItem" data-group="<?php echo $char; ?>"><?php echo $char; ?></li>
+<?php endforeach; ?>
+</ul>
+</div>
+
+<div class="terms">
+<?php foreach ($this->terms as $key=>$terms): ?>
+
+<div data-group="<?php echo $key; ?>" class="glossaryGroup">
+<?php foreach ($terms as $term): ?>
+	<div class="term termToggler" id="<?php echo $term->id; ?>"><?php echo $term->term; ?></div>
+	<div class="desc">
+		<div class="ce_text block">
+		<?php if (!$term->addBefore): ?>
+
+		<?php echo $term->definition; ?>
+		<?php endif; ?>
+		<?php if ($term->addImage): ?>
+
+		<div class="image_container<?php echo $term->floatClass; ?>"<?php if ($term->margin || $term->float): ?> style="<?php echo trim($term->margin . $term->float); ?>"<?php endif; ?>>
+		<?php if ($term->href): ?>
+		<a href="<?php echo $term->href; ?>"<?php echo $term->attributes; ?> title="<?php echo $term->alt; ?>">
+		<?php endif; ?>
+		<img src="<?php echo $term->src; ?>"<?php echo $term->imgSize; ?> alt="<?php echo $term->alt; ?>">
+		<?php if ($term->href): ?>
+		</a>
+		<?php endif; ?>
+		<?php if ($term->caption): ?>
+		<div class="caption"><?php echo $term->caption; ?></div>
+		<?php endif; ?>
+		</div>
+		<?php endif; ?>
+		<?php if ($term->addBefore): ?>
+
+		<?php echo $term->definition; ?>
+		<?php endif; ?>
+
+		</div>
+		<?php if ($term->enclosure): ?>
+
+		<div class="enclosure">
+		<?php foreach ($term->enclosure as $enclosure): ?>
+		<p><img src="<?php echo $enclosure['icon']; ?>" width="18" height="18" alt="<?php echo $enclosure['title']; ?>" class="mime_icon"> <a href="<?php echo $enclosure['href']; ?>" title="<?php echo $enclosure['title']; ?>"><?php echo $enclosure['link']; ?> <span class="size">(<?php echo $enclosure['filesize']; ?>)</span></a></p>
+		<?php endforeach; ?>
+		</div>
+		<?php endif; ?>
+
+		<div class="socialButtons">
+			<span class="facebook">
+				<a href="https://www.facebook.com/sharer.php?display=popup&u=<?php echo urlencode($this->Environment->base . $this->request . '#'.$term->id); ?>&t=<?php echo urlencode($term->term); ?>" rel="nofollow" title="Auf Facebook teilen" target="blank"  onclick="window.open(this.href, '', 'width=760,height=570,modal=yes,left=100,top=50,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no'); return false;"><img src="system/modules/glossary/assets/social/facebook.png" alt="Facebook" width="30" height="30"></a>
+			</span>
+			<span class="twitter">
+				<a href="http://twitter.com/share?url=<?php echo urlencode($this->Environment->base . $this->request . '#'.$term->id); ?>&text=<?php echo urlencode($term->term); ?>" rel="nofollow" title="twittern" target="blank" onclick="window.open(this.href, '', 'width=800,height=600,modal=yes,left=100,top=50,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no'); return false;"><img src="system/modules/glossary/assets/social/twitter.png" alt="Twitter" width="30" height="30"></a>
+			</span>
+			<span class="googleplus">
+				<a href="https://plusone.google.com/_/+1/confirm?hl=de&url=<?php echo urlencode($this->Environment->base . $this->request . '#'.$term->id); ?>" rel="nofollow" title="Auf Google+ teilen" target="blank" onclick="window.open(this.href, '', 'width=800,height=600,modal=yes,left=100,top=50,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no'); return false;"><img src="system/modules/glossary/assets/social/google.png" alt="Google+" width="30" height="30"></a>
+			</span>
+			<span class="email">
+				<a href="mailto:hier-empfänger@einsetzen.de?subject=Empfehlung:%20<?php echo rawurlencode($term->term); ?>&body=Dieser%20Artikel%20könnte%20Sie%20interessieren:%0A<?php echo urlencode($this->Environment->base . $this->request . '#'.$term->id); ?>%0A%0A<?php echo rawurlencode($this->teaser);?>"><img src="system/modules/glossary/assets/social/mail.png" alt="Per E-Mail empfehlen" width="30" height="30"></a>
+			</span>
+		</div>
+	</div>
+<?php endforeach; ?>
+</div>
+<?php endforeach; ?>
+</div>
+
+</div>
+
+<script src="<?php echo TL_ASSETS_URL; ?>assets/jquery/ui/<?php echo JQUERY_UI; ?>/jquery-ui.min.js"></script>
+<script>
+(function ($) {
+	$(document).ready(function () {
+		var cont = $($('.glossaryList_modern')[0]);
+		cont.find('.glossaryGroup').css('display','none');
+
+		cont.accordion({
+			active: false,
+			heightStyle: 'content',
+			header: 'div.termToggler',
+			collapsible: true
+		});
+		var activate = function (tog) {
+			var tgs = cont.find('div.termToggler');
+			tgs.removeClass('active');
+			tog.addClass('active');
+			tgs.next('div.accordion').attr('aria-hidden', 'true');
+			tog.next('div.accordion').attr('aria-hidden', 'false');
+		};
+		cont.find('div.termToggler').focus(function () {
+			cont.find('div.termToggler').attr('tabindex', 0);
+			$(this).attr('tabindex', -1);
+		}).blur(function () {
+			$(this).attr('tabindex', 0);
+		}).click(function () {
+			activate($(this));
+		}).keypress(function (event) {
+			if (event.keyCode == 13) activate($(this));
+		});
+
+		cont.find('.glossaryNavigation .glossaryNavigationItem').click(function(){
+			cont.accordion('option', 'active', false);
+			cont.find('.glossaryGroup').css('display','none');
+			cont.find('.glossaryGroup[data-group='+$(this).attr('data-group')+']').css('display','block');
+		});
+
+		if (document.location.hash) {
+			var elem = cont.find(document.location.hash);
+			if(elem)
+			{
+				cont.find('.glossaryGroup[data-group='+elem.parent('.glossaryGroup').attr('data-group')+']').css('display','block');
+				elem.click();
+			}
+		} else {
+			cont.find('.glossaryGroup:first-child').css('display','block');
+		}
+
+	});
+})(jQuery);
+</script>

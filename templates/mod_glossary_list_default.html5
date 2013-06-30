@@ -4,6 +4,7 @@
 
 <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
 <?php endif; ?>
+
 <?php foreach ($this->terms as $key=>$terms): ?>
 
 <h2 id="<?php echo $terms[0]->anchor; ?>"><?php echo $key; ?></h2>
@@ -22,7 +23,7 @@
 <?php if ($term->href): ?>
 <a href="<?php echo $term->href; ?>"<?php echo $term->attributes; ?> title="<?php echo $term->alt; ?>">
 <?php endif; ?>
-<img src="<?php echo $term->src; ?>"<?php echo $term->imgSize; ?> alt="<?php echo $term->alt; ?>" />
+<img src="<?php echo $term->src; ?>"<?php echo $term->imgSize; ?> alt="<?php echo $term->alt; ?>">
 <?php if ($term->href): ?>
 </a>
 <?php endif; ?>
@@ -41,7 +42,7 @@
 
 <div class="enclosure">
 <?php foreach ($term->enclosure as $enclosure): ?>
-<p><img src="<?php echo $enclosure['icon']; ?>" width="18" height="18" alt="<?php echo $enclosure['title']; ?>" class="mime_icon" /> <a href="<?php echo $enclosure['href']; ?>" title="<?php echo $enclosure['title']; ?>"><?php echo $enclosure['link']; ?> <span class="size">(<?php echo $enclosure['filesize']; ?>)</span></a></p>
+<p><img src="<?php echo $enclosure['icon']; ?>" width="18" height="18" alt="<?php echo $enclosure['title']; ?>" class="mime_icon"> <a href="<?php echo $enclosure['href']; ?>" title="<?php echo $enclosure['title']; ?>"><?php echo $enclosure['link']; ?> <span class="size">(<?php echo $enclosure['filesize']; ?>)</span></a></p>
 <?php endforeach; ?>
 </div>
 <?php endif; ?>

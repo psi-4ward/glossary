@@ -1,50 +1,10 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
+<?php
 
-/**
- * Contao Open Source CMS
- * Copyright (C) 2005-2011 Leo Feyer
- *
- * Formerly known as TYPOlight Open Source CMS.
- *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- * @copyright  Leo Feyer 2005-2011
- * @author     Leo Feyer <http://www.contao.org>
- * @package    Glossary
- * @license    LGPL
- * @filesource
- */
+namespace Psi\Glossary\Module;
 
 
-/**
- * Class ModuleGlossaryList
- *
- * @copyright  Leo Feyer 2008-2011
- * @author     Leo Feyer <http://www.contao.org>
- * @package    Controller
- */
-class ModuleGlossaryList extends Module
+class Listing extends \Module
 {
-
-	/**
-	 * Template
-	 * @var string
-	 */
-	protected $strTemplate = 'mod_glossary_list';
-
 
 	/**
 	 * Display a wildcard in the back end
@@ -54,7 +14,7 @@ class ModuleGlossaryList extends Module
 	{
 		if (TL_MODE == 'BE')
 		{
-			$objTemplate = new BackendTemplate('be_wildcard');
+			$objTemplate = new \BackendTemplate('be_wildcard');
 
 			$objTemplate->wildcard = '### GLOSSARY LIST ###';
 			$objTemplate->title = $this->headline;
@@ -72,6 +32,7 @@ class ModuleGlossaryList extends Module
 		{
 			return '';
 		}
+		$this->strTemplate = $this->glossaryTpl;
 
 		return parent::generate();
 	}
@@ -90,13 +51,12 @@ class ModuleGlossaryList extends Module
 			return;
 		}
 
-		global $objPage;
 		$this->import('String');
 		$arrTerms = array();
 
 		while ($objTerm->next())
 		{
-			$objTemp = new stdClass();
+			$objTemp = new \stdClass();
 			$key = utf8_substr($objTerm->term, 0, 1);
 
 			$objTemp->term = $objTerm->term;
@@ -104,7 +64,7 @@ class ModuleGlossaryList extends Module
 			$objTemp->id = standardize($objTerm->term);
 
 			// Clean the RTE output
-			if ($objPage->outputFormat == 'xhtml')
+			if ($GLOBALS['objPage']->outputFormat == 'xhtml')
 			{
 				$objTerm->definition = $this->String->toXhtml($objTerm->definition);
 			}
@@ -117,9 +77,22 @@ class ModuleGlossaryList extends Module
 			$objTemp->addImage = false;
 
 			// Add image
-			if ($objTerm->addImage && is_file(TL_ROOT . '/' . $objTerm->singleSRC))
+			if ($objTerm->addImage && $objTerm->singleSRC)
 			{
-				$this->addImageToTemplate($objTemp, $objTerm->row());
+				if (!is_numeric($objTerm->singleSRC))
+				{
+					$objTemplate->text = '<p class="error">'.$GLOBALS['TL_LANG']['ERR']['version2format'].'</p>';
+				}
+				else
+				{
+					$objModel = FilesModel::findByPk($objTerm->singleSRC);
+
+					if ($objModel !== null && is_file(TL_ROOT . '/' . $objModel->path))
+					{
+						$objTerm->singleSRC = $objModel->path;
+						$this->addImageToTemplate($objTemp, $objTerm->row());
+					}
+				}
 			}
 
 			$objTemp->enclosures = array();
@@ -134,9 +107,7 @@ class ModuleGlossaryList extends Module
 		}
 
 		$this->Template->terms = $arrTerms;
-		$this->Template->request = ampersand($this->Environment->request, true);
+		$this->Template->request = $this->generateFrontendUrl($GLOBALS['objPage']->row());
 		$this->Template->topLink = $GLOBALS['TL_LANG']['MSC']['backToTop'];
 	}
 }
-
-?>

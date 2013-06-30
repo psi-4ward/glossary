@@ -1,33 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You cannot access this file directly!');
-
-/**
- * Contao Open Source CMS
- * Copyright (C) 2005-2011 Leo Feyer
- *
- * Formerly known as TYPOlight Open Source CMS.
- *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- * @copyright  Leo Feyer 2005-2011
- * @author     Leo Feyer <http://www.contao.org>
- * @package    Glossary
- * @license    LGPL
- * @filesource
- */
-
+<?php
 
 /**
  * Table tl_glossary
@@ -41,7 +12,14 @@ $GLOBALS['TL_DCA']['tl_glossary'] = array
 		'dataContainer'               => 'Table',
 		'ctable'                      => array('tl_glossary_term'),
 		'switchToEdit'                => true,
-		'enableVersioning'            => true
+		'enableVersioning'            => true,
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id' => 'primary'
+			)
+		)
 	),
 
 	// List
@@ -77,6 +55,12 @@ $GLOBALS['TL_DCA']['tl_glossary'] = array
 				'href'                => 'table=tl_glossary_term',
 				'icon'                => 'edit.gif'
 			),
+			'editheader' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_glossary']['editheader'],
+				'href'                => 'act=edit',
+				'icon'                => 'header.gif'
+			),
 			'copy' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_glossary']['copy'],
@@ -99,24 +83,88 @@ $GLOBALS['TL_DCA']['tl_glossary'] = array
 		)
 	),
 
-	// Palettes
 	'palettes' => array
 	(
-		'default'                     => '{title_legend},title'
+		'__selector__'				  => array('glossarylinks'),
+		'default'                     => '{title_legend},title;{glossarylinks_legend:hide},glossarylinks',
 	),
 
-	// Fields
+	'subpalettes' => array
+	(
+		'glossarylinks' 			  => 'glossarylinks_template,glossarylinks_pages,glossarylinks_pagesInvert,glossarylinks_disallowintags,glossarylinks_allowtagsindesc'
+	),
+
 	'fields' => array
 	(
+		'id' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+		),
+		'tstamp' => array
+		(
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+		),
 		'title' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_glossary']['title'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
-		)
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>255),
+			'sql'                     => "varchar(255) NOT NULL default ''"
+		),
+		'glossarylinks'	=> array
+		(
+			'label'					  => $GLOBALS['TL_LANG']['tl_glossary']['glossarylinks'],
+			'exclude'				  => true,
+			'filter'				  => true,
+			'inputType'				  => 'checkbox',
+			'eval'					  => array('submitOnChange' => true, 'tl_class'=>'w50'),
+			'sql'					  => "char(1) NOT NULL default ''"
+		),
+		'glossarylinks_template' => array
+		(
+			'label'					  => &$GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_template'],
+			'default'                 => 'glossarylinks_default',
+			'exclude'                 => true,
+			'inputType'               => 'select',
+			'options'                 => $this->getTemplateGroup('glossarylinks_'),
+			'eval'                    => array('tl_class'=>'clr'),
+			'sql'                     => "varchar(255) NOT NULL default ''"
+		),
+		'glossarylinks_pages' => array
+		(
+			'label'					  => $GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_pages'],
+			'explanation'   		  => 'glossarylinks_pages',
+			'exclude'				  => true,
+			'inputType'				  => 'pageTree',
+			'eval'					  => array('multiple'=>true, 'fieldType'=>'checkbox', 'files'=>true, 'tl_class'=>'clr', 'csv'=>','),
+			'sql'                     => "blob NULL"
+		),
+		'glossarylinks_pagesInvert'	=> array
+		(
+			'label'					  => $GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_pagesInvert'],
+			'exclude'				  => true,
+			'inputType'				  => 'checkbox',
+			'eval'					  => array('tl_class'=>'w50'),
+			'sql'					  => "char(1) NOT NULL default ''"
+		),
+		'glossarylinks_disallowintags' => array
+		(
+			'label'			  	      => $GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_disallowintags'],
+			'exclude'		  	      => true,
+			'default'				  => '<script>,<style>',
+			'inputType'		  	      => 'textarea',
+			'eval'			  	      => array('tl_class'=>'clr', 'decodeEntities'=>true, 'preserveTags'=>true, 'class'=>'monospace'),
+			'sql'                     => "text NULL"
+		),
+		'glossarylinks_allowtagsindesc' => array
+		(
+			'label'					  => $GLOBALS['TL_LANG']['tl_glossary']['glossarylinks_allowtagsindesc'],
+			'exclude'				  => true,
+			'inputType'				  => 'textarea',
+			'eval'					  => array('tl_class'=>'clr', 'decodeEntities'=>true, 'preserveTags'=>true, 'class'=>'monospace'),
+			'sql'                     => "text NULL"
+		),
 	)
 );
-
-?>
