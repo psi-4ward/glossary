@@ -109,20 +109,24 @@
 		});
 
 		cont.find('.glossaryNavigation .glossaryNavigationItem').click(function(){
+			cont.find('.glossaryNavigation .glossaryNavigationItem').removeClass('active');
+			$(this).addClass('active');
 			cont.accordion('option', 'active', false);
-			cont.find('.glossaryGroup').css('display','none');
-			cont.find('.glossaryGroup[data-group='+$(this).attr('data-group')+']').css('display','block');
+			cont.find('.glossaryGroup').removeClass('active').css('display','none');
+			cont.find('.glossaryGroup[data-group='+$(this).attr('data-group')+']').addClass('active').css('display','block');
 		});
 
 		if (document.location.hash) {
 			var elem = cont.find(document.location.hash);
 			if(elem)
 			{
-				cont.find('.glossaryGroup[data-group='+elem.parent('.glossaryGroup').attr('data-group')+']').css('display','block');
+				cont.find('.glossaryGroup[data-group='+elem.parent('.glossaryGroup').attr('data-group')+']').addClass('active').css('display','block');
+				cont.find('.glossaryNavigation .glossaryNavigationItem[data-group='+elem.parent('.glossaryGroup').attr('data-group')+']').addClass('active');
 				elem.click();
 			}
 		} else {
-			cont.find('.glossaryGroup:first-child').css('display','block');
+			cont.find('.glossaryGroup:first-child').addClass('active').css('display','block');
+			cont.find('.glossaryNavigation .glossaryNavigationItem:first-child').addClass('active')
 		}
 
 	});
