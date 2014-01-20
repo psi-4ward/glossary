@@ -130,7 +130,6 @@ $GLOBALS['TL_DCA']['tl_glossary_term'] = array
 			'search'                  => true,
 			'flag'					  => 1,
 			'inputType'               => 'text',
-			'save_callback' 		  => array(array('tl_glossary_term', 'capitalizeTerm')),
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
@@ -281,20 +280,6 @@ class tl_glossary_term extends \Backend
 	{
 		parent::__construct();
 		$this->import('BackendUser', 'User');
-	}
-
-
-	/**
-	 * Capitalize a term
-	 * @param string
-	 * @return string
-	 */
-	public function capitalizeTerm($term)
-	{
-		$first = utf8_substr($term, 0, 1);
-		$upper = utf8_strtoupper($first);
-
-		return $upper . utf8_substr($term, 1);
 	}
 
 
