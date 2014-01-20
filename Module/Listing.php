@@ -79,13 +79,14 @@ class Listing extends \Module
 			// Add image
 			if ($objTerm->addImage && $objTerm->singleSRC)
 			{
-				if (!is_numeric($objTerm->singleSRC))
+				if (!is_numeric($objTerm->singleSRC) && !\Validator::isUuid($objTerm->singleSRC))
 				{
-					$objTemplate->text = '<p class="error">'.$GLOBALS['TL_LANG']['ERR']['version2format'].'</p>';
+					$this->Template->hl = 'h1';
+					$this->Template->headline = '<p class="error">'.$GLOBALS['TL_LANG']['ERR']['version2format'].'</p>';
 				}
 				else
 				{
-					$objModel = FilesModel::findByPk($objTerm->singleSRC);
+					$objModel = \FilesModel::findByPk($objTerm->singleSRC);
 
 					if ($objModel !== null && is_file(TL_ROOT . '/' . $objModel->path))
 					{

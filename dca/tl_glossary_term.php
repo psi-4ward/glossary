@@ -177,8 +177,8 @@ $GLOBALS['TL_DCA']['tl_glossary_term'] = array
 			'label'                   => &$GLOBALS['TL_LANG']['tl_content']['singleSRC'],
 			'exclude'                 => true,
 			'inputType'               => 'fileTree',
-			'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'mandatory'=>true),
-			'sql'                     => "varchar(255) NOT NULL default ''"
+			'eval'                    => array('filesOnly'=>true, 'fieldType'=>'radio', 'mandatory'=>true, 'tl_class'=>'clr'),
+			'sql'                     => "binary(16) NULL"
 		),
 		'alt' => array
 		(
@@ -257,8 +257,8 @@ $GLOBALS['TL_DCA']['tl_glossary_term'] = array
 			'label'                   => &$GLOBALS['TL_LANG']['tl_glossary_term']['enclosure'],
 			'exclude'                 => true,
 			'inputType'               => 'fileTree',
-			'eval'                    => array('fieldType'=>'checkbox', 'files'=>true, 'filesOnly'=>true, 'mandatory'=>true),
-			'sql'                     => "varchar(255) NOT NULL default ''"
+			'eval'                    => array('filesOnly'=>true, 'fieldType'=>'checkbox', 'multiple'=>true, 'mandatory'=>true, 'tl_class'=>'clr'),
+			'sql'                     => "blob NULL"
 		),
 		'published' => array
 		(

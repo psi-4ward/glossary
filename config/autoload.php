@@ -17,7 +17,7 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'mod_glossary_list_default' => 'system/modules/glossary/templates',
-	'mod_glossary_list_modern_jQuery'  => 'system/modules/glossary/templates',
-	'glossarylinks_default' 	=> 'system/modules/glossary/templates',
+	'mod_glossary_list_default'         => 'system/modules/glossary/templates',
+	'mod_glossary_list_modern_jQuery'   => 'system/modules/glossary/templates',
+	'glossarylinks_default' 	        => 'system/modules/glossary/templates',
 ));
