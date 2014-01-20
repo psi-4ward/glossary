@@ -1,0 +1,45 @@
+{
+  "name": "psi/glossary",
+  "description": "Glossary module for Contao WebCMS",
+  "keywords": ["glossary"],
+  "type": "contao-module",
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "Christoph Wiechert",
+      "email": "wio@psitrax.de.de",
+      "homepage": "http://4wardmedia.de",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "wio@psitrax.de.de",
+    "issues": "https://github.com/psi-4ward/glossary/issues",
+    "forum": "https://community.contao.org/de/forumdisplay.php?110-4ward",
+    "irc": "irc://irc.freenode.org/contao.de",
+    "source": "https://github.com/psi-4ward/glossary"
+  },
+  "require": {
+    "php": ">=5.3",
+    "contao/core": ">=3.2,<3.3"
+  },
+  "replace": {
+    "contao-legacy/glossary": "self.version"
+  },
+  "conflict": {
+    "contao/core": "3.0.*"
+  },
+  "extra": {
+    "contao": {
+      "sources": {
+        "": "system/modules/glossary"
+      },
+      "runonce": [
+        "runonce/32update.php"
+      ]
+    },
+    "branch-alias": {
+      "dev-master": "1.4.x-dev"
+    }
+  }
+} 
