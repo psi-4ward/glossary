@@ -21,7 +21,7 @@
   },
   "require": {
     "php": ">=5.3",
-    "contao/core": ">=3.2,<3.3"
+    "contao/core": ">=3.2,<4"
   },
   "replace": {
     "contao-legacy/glossary": "self.version"
