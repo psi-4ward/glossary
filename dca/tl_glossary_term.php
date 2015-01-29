@@ -145,7 +145,7 @@ $GLOBALS['TL_DCA']['tl_glossary_term'] = array
 		'author' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_glossary_term']['author'],
-			'default'                 => $this->User->id,
+			'default'                 => \BackendUser::getInstance()->id,
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'select',
