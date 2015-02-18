@@ -56,7 +56,7 @@ class Listing extends \Module
 
 		while ($objTerm->next())
 		{
-			$objTemp = new \stdClass();
+			$objTemp = new \FrontendTemplate();
 			$key = utf8_substr($objTerm->term, 0, 1);
 
 			$objTemp->term = $objTerm->term;
