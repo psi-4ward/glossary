@@ -51,7 +51,7 @@ class Listing extends \Module
 			return;
 		}
 
-		$this->import('String');
+		$this->import('StringUtil','String');
 		$arrTerms = array();
 
 		while ($objTerm->next())
