@@ -1,5 +1,5 @@
 {
-  "name": "psi/glossary",
+  "name": "laemmi/contao-module-glossary",
   "description": "Glossary module for Contao WebCMS",
   "keywords": ["glossary"],
   "type": "contao-module",
@@ -10,36 +10,50 @@
       "email": "wio@psitrax.de.de",
       "homepage": "http://4wardmedia.de",
       "role": "Developer"
+    },
+    {
+      "name": "Michael Lämmlein",
+      "email": "laemmi@spacerabbit.de",
+      "homepage": "https://www.spacerabbit.de",
+      "role": "Developer"
     }
   ],
-  "support": {
-    "email": "wio@psitrax.de.de",
-    "issues": "https://github.com/psi-4ward/glossary/issues",
-    "forum": "https://community.contao.org/de/forumdisplay.php?110-4ward",
-    "irc": "irc://irc.freenode.org/contao.de",
-    "source": "https://github.com/psi-4ward/glossary"
-  },
   "require": {
-    "php": ">=5.3",
-    "contao/core": ">=3.2,<4"
+    "php": "^8.1",
+    "contao/core-bundle": "^4.13"
   },
-  "replace": {
-    "contao-legacy/glossary": "self.version"
+  "require-dev": {
+    "contao/manager-plugin": "^2.11",
+    "rector/rector": "^0.18.6",
+    "squizlabs/php_codesniffer": "^3.7"
   },
   "conflict": {
-    "contao/core": "3.0.*"
+    "contao/core": "*",
+    "contao/manager-plugin": "<2.0 || >=3.0"
   },
   "extra": {
-    "contao": {
-      "sources": {
-        "": "system/modules/glossary"
-      },
-      "runonce": [
-        "runonce/32update.php"
-      ]
+    "contao-manager-plugin": "Laemmi\\ContaoGlossaryBundle\\ContaoManager\\Plugin"
+  },
+  "autoload": {
+    "psr-4": {
+      "Laemmi\\ContaoGlossaryBundle\\": "src/"
     },
-    "branch-alias": {
-      "dev-master": "1.4.x-dev"
+    "classmap": [
+      "src/Resources/contao/"
+    ],
+    "exclude-from-classmap": [
+      "src/Resources/contao/config/",
+      "src/Resources/contao/dca/",
+      "src/Resources/contao/languages/",
+      "src/Resources/contao/templates/"
+    ]
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "contao-components/installer": true,
+      "php-http/discovery": true,
+      "contao/manager-plugin": true
     }
   }
-} 
+}
