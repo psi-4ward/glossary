@@ -118,6 +118,12 @@ class Links extends \Frontend
      */
     public function replaceTerms($strBuffer, $strTemplate)
     {
+        /**
+         * @todo this function is disable and needs to refactored.
+         * @author Michael Lämmlein <laemmi@spacerabbit.de
+         */
+        return $strBuffer;
+
         // Include SimpleHtmlDom
 //        if (!function_exists('file_get_html')) {
 //            require_once(__DIR__ . '/../classes/simple_html_dom.php');
